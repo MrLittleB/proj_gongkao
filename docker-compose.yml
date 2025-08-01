@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  backend:
+    build: ./backend
+    container_name: gongkao_backend
+    restart: unless-stopped
+  frontend:
+    build: ./frontend
+    container_name: gongkao_frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
