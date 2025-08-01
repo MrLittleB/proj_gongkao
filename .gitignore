@@ -34,5 +34,8 @@ Thumbs.db
 # But if you have local-only overrides, you can add them.
 docker-compose.override.yml
 
+# 部分记录信息
+tips.md
+
 # Logs
 *.log
