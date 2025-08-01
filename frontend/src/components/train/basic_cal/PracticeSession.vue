@@ -37,9 +37,7 @@ const isLastQuestion = computed(() => currentQuestionIndex.value === props.quest
 const goToNextQuestion = () => { if (!isLastQuestion.value) currentQuestionIndex.value++; };
 const goToPreviousQuestion = () => { if (currentQuestionIndex.value > 0) currentQuestionIndex.value--; };
 
-// --- 修改 handleKeyPress 来处理小数点 ---
 const handleKeyPress = (key) => {
-  // 如果输入的是小数点，且答案中已有小数点，则不作反应
   if (key === '.' && userAnswer.value.includes('.')) {
     return;
   }
@@ -53,13 +51,10 @@ const handleClear = () => { userAnswer.value = ''; };
 const handleRetry = () => { emit('retry'); };
 const submitPractice = () => { emit('submit', elapsedTime.value); };
 
-// --- 新增 handleToggleSign 来处理 +/- ---
 const handleToggleSign = () => {
   if (userAnswer.value.startsWith('-')) {
-    // 如果已有负号，则去掉
     userAnswer.value = userAnswer.value.substring(1);
   } else {
-    // 否则（包括答案为空时），在前面加上负号
     userAnswer.value = '-' + userAnswer.value;
   }
 };
@@ -73,7 +68,7 @@ const handleToggleSign = () => {
       <div class="timer">用时: {{ elapsedTime }}s</div>
     </header>
     <main class="question-area">
-       <div class="question-text">
+      <div class="question-text">
         <span>{{ currentQuestion.num1 }}</span>
         <span class="operator">{{ currentQuestion.operator }}</span>
         <span>{{ currentQuestion.num2 }}</span>
@@ -129,7 +124,8 @@ const handleToggleSign = () => {
   display: flex;
   flex-direction: column;
   align-items: center; 
-  height: calc(100vh - 50px);
+  /* 关键修改：将 vh 改为 dvh，以适应手机浏览器动态变化的视窗高度 */
+  height: calc(100dvh - 50px);
   box-sizing: border-box;
   padding: 0 16px;
 }
@@ -142,7 +138,7 @@ const handleToggleSign = () => {
   color: var(--text-color-secondary);
   flex-shrink: 0;
   width: 100%;
-  max-width: 320px; /* <--- 修改点 */
+  max-width: 320px;
 }
 
 .retry-btn {
@@ -183,7 +179,7 @@ const handleToggleSign = () => {
   width: 100%;
   box-sizing: border-box;
   flex-shrink: 0;
-  max-width: 320px; /* <--- 修改点 */
+  max-width: 320px;
 }
 
 .nav-btn {
