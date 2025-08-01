@@ -125,7 +125,7 @@ const handleToggleSign = () => {
   flex-direction: column;
   align-items: center; 
   /* 关键修改：将 vh 改为 dvh，以适应手机浏览器动态变化的视窗高度 */
-  height: calc(100dvh - 50px);
+  height: calc(100dvh - 90px);
   box-sizing: border-box;
   padding: 0 16px;
 }
