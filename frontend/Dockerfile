@@ -3,11 +3,6 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
-RUN echo "--- Listing files in /app directory ---"
-RUN ls -la
-RUN echo "--- Displaying content of package.json ---"
-RUN cat package.json
-RUN echo "================== 除錯結束 =================="
 RUN npm install
 COPY . .
 RUN npm run build # 在這裡完成建置，產生 /app/dist 資料夾
